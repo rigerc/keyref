@@ -88,3 +88,5 @@ All user data lives in `%AppData%\KeyPilot\`:
 ## Current Status
 
 Pre-development. Planning complete. Starting at **Phase 0 — Project Setup** per `docs/project/implementation.md`.
+
+@AGENTS.md
