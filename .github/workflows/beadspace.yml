@@ -11,7 +11,7 @@ name: Deploy Beadspace
 
 on:
   push:
-    branches: [main]
+    branches: [beads-sync, master]
     paths:
       - ".beads/**"
       - ".beadspace/**"
