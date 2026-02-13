@@ -13,8 +13,8 @@ on:
   push:
     branches: [main]
     paths:
-      - '.beads/**'
-      - '.beadspace/**'
+      - ".beads/**"
+      - ".beadspace/**"
   workflow_dispatch:
 
 permissions:
