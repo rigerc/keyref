@@ -1,0 +1,65 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+    <RootNamespace>KeyPilot.App</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Platforms>x64;ARM64</Platforms>
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <UseWinUI>true</UseWinUI>
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>CA1062;CA1307;CA2007</WarningsNotAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\**" />
+    <Page Include="**\*.xaml" Exclude="App.xaml" />
+    <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.3916" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.122" />
+    <Manifest Include="$(ApplicationManifest)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KeyPilot.Core\KeyPilot.Core.csproj" />
+    <ProjectReference Include="..\KeyPilot.UI\KeyPilot.UI.csproj" />
+    <ProjectReference Include="..\KeyPilot.Hooks\KeyPilot.Hooks.csproj" />
+    <ProjectReference Include="..\KeyPilot.Data\KeyPilot.Data.csproj" />
+  </ItemGroup>
+
+  <!--
+    Defining the "Msix" ProjectCapability below allows the Single-project MSIX Packaging
+    Tools to treat this project as an MSIX project. More details about this project
+    capability can be found here: https://aka.ms/single-project-msix
+  -->
+  <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="Msix" />
+  </ItemGroup>
+
+  <!--
+    Defining the "HasPackageReferences" ProjectCapability allows the Single-project MSIX Packaging
+    Tools to treat this project as a project with Package References. More details can be found at:
+    https://devblogs.microsoft.com/dotnet/anatomy-of-a-project-reference-and-its-design-time-properties/
+  -->
+  <ItemGroup Condition="'$(DisableHasPackageReferencesProjectCapabilityAddedByProject)'!='' and '$(EnableMsixTooling)'=='true'">
+    <ProjectCapability Include="HasPackageReferences" />
+  </ItemGroup>
+</Project>

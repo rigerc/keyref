@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>KeyPilot.Core</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <WarningsNotAsErrors>CA1062;CA1307;CA2007</WarningsNotAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591;CS1591</NoWarn>
+  </PropertyGroup>
+
+  <!--
+    KeyPilot.Core must have ZERO framework references.
+    All OS interactions are abstracted behind interfaces.
+    This project should only contain:
+    - Domain models (records)
+    - Interfaces
+    - Value objects
+    - Result types
+    - Pure business logic
+  -->
+
+</Project>
