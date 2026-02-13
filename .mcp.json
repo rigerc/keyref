@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "ref": {
+      "type": "http",
+      "url": "https://api.ref.tools/mcp?apiKey=ref-b7545be87de702bb5e0e"
+    },
+    "augments": {
+      "type": "http",
+      "url": "https://mcp.augments.dev/mcp"
+    },
+    "color-converter": {
+      "command": "bunx",
+      "args": ["-y", "mcp-color-convert@latest"]
+    },
+    "lucide-icons": {
+      "command": "bunx",
+      "args": ["lucide-icons-mcp", "--stdio"]
+    },
+    "github": {
+      "command": "github-mcp-server",
+      "args": ["stdio"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PAT}",
+        "GITHUB_TOOLSETS": "default,actions,dependabot"
+      }
+    },
+    "gemini": {
+      "command": "bunx",
+      "args": ["-y", "gemini-mcp-tool"]
+    }
+  }
+}
